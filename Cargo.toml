@@ -1,0 +1,18 @@
+[package]
+name = "cosmic-camera-controls"
+version = "0.1.0"
+edition = "2021"
+description = "COSMIC webcam control panel — V4L2 camera settings with per-device profile persistence"
+license = "GPL-3.0"
+
+[dependencies]
+libcosmic = { git = "https://github.com/pop-os/libcosmic.git", default-features = false, features = ["tokio", "winit"] }
+v4l = "0.14"
+libc = "0.2"
+image = { version = "0.25", default-features = false, features = ["jpeg"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"
+dirs = "5"
+udev = "0.9"
+log = "0.4"
+env_logger = "0.11"
