@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Camera Controls
+GenericName=Webcam Configuration
+Comment=Configure webcam settings via V4L2
+Categories=Settings;HardwareSettings;
+Type=Application
+Exec=cosmic-camera-controls
+Icon=com.github.ctsdownloads.CameraControls
+Terminal=false
+StartupNotify=true
+Keywords=camera;webcam;v4l2;video;

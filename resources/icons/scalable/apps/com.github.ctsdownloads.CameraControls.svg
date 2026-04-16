@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a4252"/>
+      <stop offset="1" stop-color="#1e242e"/>
+    </linearGradient>
+    <radialGradient id="lens" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#5a6578"/>
+      <stop offset="0.7" stop-color="#1a1f28"/>
+      <stop offset="1" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Camera body -->
+  <rect x="14" y="34" width="100" height="68" rx="10" fill="url(#body)"/>
+
+  <!-- Lens housing -->
+  <circle cx="64" cy="68" r="28" fill="#0a0d12"/>
+  <circle cx="64" cy="68" r="24" fill="url(#lens)"/>
+
+  <!-- Lens reflection -->
+  <circle cx="56" cy="60" r="6" fill="#7a8599" opacity="0.6"/>
+  <circle cx="54" cy="58" r="2" fill="#fff" opacity="0.8"/>
+
+  <!-- Aperture ring -->
+  <circle cx="64" cy="68" r="20" fill="none" stroke="#2a313d" stroke-width="1"/>
+
+  <!-- Recording LED -->
+  <circle cx="98" cy="46" r="3" fill="#e63946"/>
+
+  <!-- Top viewfinder bump -->
+  <rect x="50" y="26" width="28" height="10" rx="2" fill="url(#body)"/>
+</svg>
