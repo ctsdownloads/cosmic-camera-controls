@@ -23,7 +23,7 @@ No audio. No daemon. No background service.
 ### Arch / CachyOS
 
 ```bash
-sudo pacman -S --needed base-devel cmake \
+sudo pacman -S --needed base-devel cmake just \
   systemd-libs v4l-utils \
   wayland libxkbcommon mesa \
   libinput seatd \
@@ -33,7 +33,7 @@ sudo pacman -S --needed base-devel cmake \
 ### Fedora
 
 ```bash
-sudo dnf install -y gcc make cmake pkgconf \
+sudo dnf install -y gcc make cmake pkgconf just \
   systemd-devel libv4l-devel \
   wayland-devel libxkbcommon-devel mesa-libEGL-devel \
   libinput-devel libseat-devel \
@@ -43,14 +43,14 @@ sudo dnf install -y gcc make cmake pkgconf \
 ### Ubuntu / Pop!_OS
 
 ```bash
-sudo apt install -y build-essential cmake pkg-config \
+sudo apt install -y build-essential cmake pkg-config just \
   libudev-dev libv4l-dev \
   libwayland-dev libxkbcommon-dev libegl-dev \
   libinput-dev libseat-dev \
   libexpat1-dev libfontconfig-dev libfreetype-dev
 ```
 
-### Compile
+### Compile and run
 
 ```bash
 cargo build --release
@@ -58,6 +58,22 @@ cargo build --release
 ```
 
 Requires Rust stable toolchain ([rustup](https://rustup.rs/) if not already installed). First build pulls libcosmic from git and will take a while.
+
+### Install system-wide
+
+To install the binary, desktop entry, and icon so the app appears in your launcher:
+
+```bash
+just install
+```
+
+To remove:
+
+```bash
+just uninstall
+```
+
+Both recipes self-elevate with `sudo` for `/usr` paths.
 
 ## Config
 
