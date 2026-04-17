@@ -50,30 +50,21 @@ sudo apt install -y build-essential cmake pkg-config just \
   libexpat1-dev libfontconfig-dev libfreetype-dev
 ```
 
-### Compile and run
+### Install
 
 ```bash
-cargo build --release
-./target/release/cosmic-camera-controls
+git clone https://github.com/ctsdownloads/cosmic-camera-controls.git
+cd cosmic-camera-controls
+just install
 ```
 
 Requires Rust stable toolchain ([rustup](https://rustup.rs/) if not already installed). First build pulls libcosmic from git and will take a while.
-
-### Install system-wide
-
-To install the binary, desktop entry, and icon so the app appears in your launcher:
-
-```bash
-just install
-```
 
 To remove:
 
 ```bash
 just uninstall
 ```
-
-Both recipes self-elevate with `sudo` for `/usr` paths.
 
 ## Config
 
