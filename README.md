@@ -40,6 +40,78 @@ sudo dnf install -y gcc make cmake pkgconf just \
   expat-devel fontconfig-devel freetype-devel
 ```
 
+### Fedora Atomic (COSMIC spin) / Origami
+
+On immutable Fedora variants, `/usr` is read-only. Build inside a Fedora distrobox, then use `just install-user` to install user-local to `~/.local`. Full tested procedure:
+
+1. Create and enter a Fedora 43 distrobox (reuse `cosmic-build` if it still exists):
+
+   ```bash
+   distrobox create --name cosmic-build --image registry.fedoraproject.org/fedora-toolbox:43
+   distrobox enter cosmic-build
+   ```
+
+2. Inside the container, install the same build deps as the Fedora section above, plus `git`, `rust`, and `cargo` (a fresh toolbox container doesn't have them):
+
+   ```bash
+   sudo dnf install -y gcc make cmake pkgconf just git \
+     rust cargo \
+     systemd-devel libv4l-devel \
+     wayland-devel libxkbcommon-devel mesa-libEGL-devel \
+     libinput-devel libseat-devel \
+     expat-devel fontconfig-devel freetype-devel
+   ```
+
+3. Clone:
+
+   ```bash
+   cd ~
+   git clone https://github.com/ctsdownloads/cosmic-camera-controls.git
+   cd cosmic-camera-controls
+   ```
+
+4. Build and install user-local:
+
+   ```bash
+   just install-user
+   ```
+
+5. Verify the install landed and `Exec=` is absolute:
+
+   ```bash
+   ls ~/.local/bin/cosmic-camera-controls
+   ls ~/.local/share/applications/io.github.ctsdownloads.CosmicCameraControls.desktop
+   ls ~/.local/share/icons/hicolor/scalable/apps/io.github.ctsdownloads.CosmicCameraControls.svg
+   grep ^Exec= ~/.local/share/applications/io.github.ctsdownloads.CosmicCameraControls.desktop
+   ```
+
+   `grep` should show `Exec=/home/$USER/.local/bin/cosmic-camera-controls`.
+
+6. Exit the container:
+
+   ```bash
+   exit
+   ```
+
+7. On the host, confirm you're in the `video` group:
+
+   ```bash
+   groups | grep video
+   ```
+
+   If missing: `sudo usermod -aG video $USER && newgrp video`.
+
+8. Refresh desktop & icon caches so COSMIC picks up the new entries:
+
+   ```bash
+   update-desktop-database ~/.local/share/applications
+   gtk-update-icon-cache -f ~/.local/share/icons/hicolor 2>/dev/null || true
+   ```
+
+9. Launch from the COSMIC app launcher: Super → search "Camera". If it doesn't appear, log out and back in once to force a full XDG rescan.
+
+Uninstall later: from the cloned repo on the host, `just uninstall-user`.
+
 ### Ubuntu / Pop!_OS
 
 ```bash
