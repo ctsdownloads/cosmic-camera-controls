@@ -415,10 +415,14 @@ impl Application for App {
             sections.push(text(&self.status).into());
         }
 
-        container(column(sections).spacing(16).padding(24).width(Length::Fill))
-            .width(Length::Fill)
-            .height(Length::Fill)
-            .into()
+        container(
+            widget::scrollable(
+                column(sections).spacing(16).padding(24).width(Length::Fill),
+            ),
+        )
+        .width(Length::Fill)
+        .height(Length::Fill)
+        .into()
     }
 }
 
